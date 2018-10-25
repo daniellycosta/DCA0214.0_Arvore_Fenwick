@@ -29,12 +29,15 @@ public class FenwickTree {
 		this.right = right;
 	}
 	int size(FenwickTree no) {
-		if(no.left == null) {
+		 if(no == null){
+			return 0;
+		 }
+    		if(no.left == null && no.right == null){
 			return 1;
-		}else {
-			return no.leftSize + size(no.right);
 		}
+    		return size(no.left) + size(no.right);
 	}
+	
 	void increment(int i, int delta) {
 
 		if (i < leftSize) {
@@ -45,7 +48,13 @@ public class FenwickTree {
 	}
 	public String toString() {
 		//acho que ta errado
-		return "Valor "+ this.value + "/n" + this.leftSize + "/n" + left.toString() + right.toString();
+		//return "Valor "+ this.value + "/n" + this.leftSize + "/n" + left.toString() + right.toString();
+		FenwickTree novo = new FendiwckTree();
+		if (novo != null) {
+      			novo.left.toString();
+     			System.out.print(this.value + " ");
+      			novo.right.toString();
+    		}
 
 	}
 	static FenwickTree allZeros(int n){
