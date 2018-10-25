@@ -39,20 +39,28 @@ public class FenwickTree {
 	}
 	
 	void increment(int i, int delta) {
-
-		if (i < leftSize) {
-			increment(i,no.left);
-		}else {
-			increment(i,no.right);
+		FenwickTree atual = new FendiwckTree();
+		if(atual == null){
+		return;
 		}
-	}
+		while(true){
+			if (i < leftSize) {
+				increment(i,atual.left);
+			}else {
+				increment(i,atual.right);
+			}
+		}	
+ 	 }
+		
+		
+	
 	public String toString() {
 		//acho que ta errado
 		//return "Valor "+ this.value + "/n" + this.leftSize + "/n" + left.toString() + right.toString();
 		FenwickTree novo = new FendiwckTree();
 		if (novo != null) {
       			novo.left.toString();
-     			System.out.print(this.value + " ");
+     			System.out.print(novo.value + " ");
       			novo.right.toString();
     		}
 
