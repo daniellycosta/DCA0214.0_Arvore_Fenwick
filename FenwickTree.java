@@ -25,6 +25,21 @@ public class FenwickTree {
         }
 
     }
+    
+    int between(int lo, int hi){
+        FenwickTree inicio = new FenwickTree();
+        int i = 0;
+        while(inicio!=null && i < lo){
+            inicio = inicio.left;
+            i++;
+        }
+        
+        if (inicio) {
+            return inicio.value + between(inicio.left,inicio.right) + between(inicio.right,inicio.left);
+        }else{
+            return 0;
+        }
+    }
 
     public FenwickTree() {
 
