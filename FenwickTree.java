@@ -11,7 +11,18 @@ public class FenwickTree {
 
     }
 
-    void prefixSum() {
+    void prefixSum(int upto) {
+        FenwickTree inicio = new FenwickTree();
+        if(inicio != null){
+            //acho que teria que criar um contador, e fazer o resto entre o contador e upto, aí qd desse resto 0 era pq chegou em upto
+            if(fazer verificação do índice para se sair do limite upto, não to conseguindo pensar){
+                return 1 + inicio.left + inicio.right;
+            }else{
+                return 0 + inicio.left + inicio.right;
+            }else{
+                return 0;
+            }
+        }
 
     }
 
