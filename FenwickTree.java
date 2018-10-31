@@ -13,6 +13,9 @@ public class FenwickTree {
 
     void prefixSum(int upto) {
         FenwickTree inicio = new FenwickTree();
+	if(upto > qtdFolha(inicio)){
+           upto = qtdFolha(inicio);
+        }
         if(inicio != null){
             //acho que teria que criar um contador, e fazer o resto entre o contador e upto, aí qd desse resto 0 era pq chegou em upto
             if(fazer verificação do índice para se sair do limite upto, não to conseguindo pensar){
@@ -27,15 +30,15 @@ public class FenwickTree {
     }
     
     int qtdFolha(FenwickTree inicio){
-    if (inicio)
-    {
-        if((!inicio.left) && (!inicio.right))
-	    return 1 + qtdFolha(inicio.right) + qtdFolha(inicio.left);
-	else
-	    return 0 + qtdFolha(inicio.right) + qtdFolha(inicio.left);
-    }
-    else
-        return 0;
+	    if (inicio != null)
+	    {
+		if((!inicio.left) && (!inicio.right))
+		    return 1 + qtdFolha(inicio.right) + qtdFolha(inicio.left);
+		else
+		    return 0 + qtdFolha(inicio.right) + qtdFolha(inicio.left);
+	    }
+	    else
+		return 0;
 }
 
     
@@ -99,8 +102,10 @@ public class FenwickTree {
         }
         while (true) {
             if (i < leftSize) {
+		atual.value = atual.value+delta;    
                 increment(i, atual.left);
             } else {
+		atual.value = atual.value+delta;    
                 increment(i, atual.right);
             }
         }
@@ -110,12 +115,16 @@ public class FenwickTree {
         //acho que ta errado
         //return "Valor "+ this.value + "/n" + this.leftSize + "/n" + left.toString() + right.toString();
         FenwickTree novo = new FendiwckTree();
-        if (novo != null) {
-            novo.left.toString();
-            System.out.print(novo.value + " ");
-            novo.right.toString();
+        //if (novo != null) {
+        //    novo.left.toString();
+        //    System.out.print(novo.value + " ");
+        //    novo.right.toString();
+      //  }
+	 if (novo!=null){
+		Sytem.out.printl(novo.value);
+		toString(novo.left);
+		toString(novo.right);
         }
-
     }
 
     static FenwickTree allZeros(int n) {
