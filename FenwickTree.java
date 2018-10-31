@@ -26,7 +26,22 @@ public class FenwickTree {
 
     }
     
+    int qtdFolha(FenwickTree inicio){
+    if (inicio)
+    {
+        if((!inicio.left) && (!inicio.right))
+	    return 1 + qtdFolha(inicio.right) + qtdFolha(inicio.left);
+	else
+	    return 0 + qtdFolha(inicio.right) + qtdFolha(inicio.left);
+    }
+    else
+        return 0;
+}
+
+    
     int between(int lo, int hi){
+       
+        
         FenwickTree inicio = new FenwickTree();
         int i = 0;
         while(inicio!=null && i < lo){
@@ -34,8 +49,12 @@ public class FenwickTree {
             i++;
         }
         
-        if (inicio) {
-            return inicio.value + between(inicio.left,inicio.right) + between(inicio.right,inicio.left);
+        if(hi > qtdFolha(inicio)){
+           hi = qtdFolha(inicio);
+        }
+        
+        if (inicio!= null) {
+            return inicio.value + between(inicio.left,hi-1) + between(inicio.right,hi-1);
         }else{
             return 0;
         }
