@@ -7,46 +7,6 @@ public class FenwickTree {
     FenwickTree left = new FenwickTree();
     FenwickTree right = new FenwickTree();
 
-    void prefixSum(int upto) {
-        FenwickTree inicio = new FenwickTree();
-	if(upto > size(inicio)){
-           upto = size(inicio);
-        }
-        if(inicio != null){
-            //acho que teria que criar um contador, e fazer o resto entre o contador e upto, aí qd desse resto 0 era pq chegou em upto
-            if(fazer verificação do índice para se sair do limite upto, não to conseguindo pensar){
-                return 1 + inicio.left + inicio.right;
-            }else{
-                return 0 + inicio.left + inicio.right;
-            }else{
-                return 0;
-            }
-        }
-
-    }
-
-    
-    int between(int lo, int hi){
-       
-        
-        FenwickTree inicio = new FenwickTree();
-        int i = 0;
-        while(inicio!=null && i < lo){
-            inicio = inicio.left;
-            i++;
-        }
-        
-        if(hi > size(inicio)){
-           hi = size(inicio);
-        }
-        
-        if (inicio!= null) {
-            return inicio.value + between(inicio.left,hi-1) + between(inicio.right,hi-1);
-        }else{
-            return 0;
-        }
-    }
-
     public FenwickTree() {
 
     }
@@ -68,7 +28,29 @@ public class FenwickTree {
         this.left = left;
         this.right = right;
     }
+	
+	
+    void prefixSum(int upto) {
 
+        if(upto != 0){
+           if (leftsize == 0) {
+                return value;
+            } else {
+                if (i < leftsize) {
+			return left.prefixSum(upto);	 
+		}else {
+			return right.prefixSum(right-leftSize) + left.value;
+		}
+        }
+
+    }
+
+    
+    int between(int lo, int hi){
+        return prefixSum(lo) + prefixSum(hi-leftSize);
+    }
+
+    
     int size(FenwickTree no) {
         if (no == null) {
             return 0;
@@ -79,24 +61,23 @@ public class FenwickTree {
 	if((!inicio.left) && (!inicio.right)){
 		return 1 + size(inicio.right) + size(inicio.left);
 	}else{
-		    return 0 + size(inicio.right) + size(inicio.left);
+		return 0 + size(inicio.right) + size(inicio.left);
 	}
  }
 
     void increment(int i, int delta) {
-        FenwickTree atual = new FenwickTree();
-        if (atual == null) {
-            return;
+        if (left!=null && right!=null) {
+            value= value+delta;
         }
-        while (true) {
+      
             if (i < leftSize) {
-		atual.value = atual.value+delta;    
-                increment(i, atual.left);
+		value = value+delta;    
+                left.increment(i, delta);
             } else {
-		atual.value = atual.value+delta;    
-                increment(i, atual.right);
+		value = value+delta;    
+                right.increment(i-leftSize, delta);
             }
-        }
+        
     }
 
     public String toString() {
