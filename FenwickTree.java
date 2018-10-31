@@ -7,14 +7,10 @@ public class FenwickTree {
     FenwickTree left = new FenwickTree();
     FenwickTree right = new FenwickTree();
 
-    void increment() {
-
-    }
-
     void prefixSum(int upto) {
         FenwickTree inicio = new FenwickTree();
-	if(upto > qtdFolha(inicio)){
-           upto = qtdFolha(inicio);
+	if(upto > size(inicio)){
+           upto = size(inicio);
         }
         if(inicio != null){
             //acho que teria que criar um contador, e fazer o resto entre o contador e upto, aí qd desse resto 0 era pq chegou em upto
@@ -28,18 +24,6 @@ public class FenwickTree {
         }
 
     }
-    
-    int qtdFolha(FenwickTree inicio){
-	    if (inicio != null)
-	    {
-		if((!inicio.left) && (!inicio.right))
-		    return 1 + qtdFolha(inicio.right) + qtdFolha(inicio.left);
-		else
-		    return 0 + qtdFolha(inicio.right) + qtdFolha(inicio.left);
-	    }
-	    else
-		return 0;
-}
 
     
     int between(int lo, int hi){
@@ -52,8 +36,8 @@ public class FenwickTree {
             i++;
         }
         
-        if(hi > qtdFolha(inicio)){
-           hi = qtdFolha(inicio);
+        if(hi > size(inicio)){
+           hi = size(inicio);
         }
         
         if (inicio!= null) {
@@ -92,8 +76,12 @@ public class FenwickTree {
         if (no.left == null && no.right == null) {
             return 1;
         }
-        return size(no.left) + size(no.right);
-    }
+	if((!inicio.left) && (!inicio.right)){
+		return 1 + size(inicio.right) + size(inicio.left);
+	}else{
+		    return 0 + size(inicio.right) + size(inicio.left);
+	}
+ }
 
     void increment(int i, int delta) {
         FenwickTree atual = new FenwickTree();
